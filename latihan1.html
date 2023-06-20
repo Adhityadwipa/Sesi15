@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ajax jquery</title>
+
+</head>
+<body>
+    <center>
+        <table >
+            <tr >
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Username</th>
+            </tr>
+            <tr>
+                <td>
+                    <div class="nama"></div>
+                </td>
+                <td>
+                    <div class="email"></div>
+                </td>
+                <td>
+                    <div>
+                        <div class="usern"></div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </center>
+
+
+    <script src="jquery-3.7.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            let urlapi = "https://webpro.ptov.my.id/api/curduser.php?aksi=get";
+
+            $.ajax({
+                url: urlapi,
+                success: function(dta, status, xhr){
+                    console.log(dta);
+                    $(".nama").html(dta.isi[0][0]);
+                    $(".email").html(dta.isi[0][1]);
+                    $(".usern").html(dta.isi[0][2]);
+                },
+                error: function(xhr, status, ert){
+                    
+                }
+            });
+        })
+    </script>
+
+</body>
+</html>
